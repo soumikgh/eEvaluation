@@ -1,0 +1,22 @@
+CREATE TABLE users ( user_id INT AUTO_INCREMENT, user_email VARCHAR(30) NOT NULL, user_role CHAR, user_fname VARCHAR(30), user_lname VARCHAR(30), user_pass VARCHAR(30) NOT NULL, user_sex CHAR, user_addr VARCHAR(50), user_city VARCHAR(30), user_state VARCHAR(30), user_pin NUMERIC(6), user_pnumber NUMERIC(10), user_salt VARCHAR(30), user_status CHAR, user_allow TINYINT(1), q_corr_ans SMALLINT, q_inc_ans SMALLINT, q_un_ans SMALLINT, marks SMALLINT, CHECK (user_status IN('A','I')), CHECK (user_sex IN('M','F')), PRIMARY KEY(user_id) ) ENGINE=InnoDB;
+
+CREATE TABLE questions ( q_id int NOT NULL AUTO_INCREMENT,
+  q_body varchar(200) NOT NULL,
+  q_ans1 varchar(30) NOT NULL,
+  q_ans2 varchar(30) NOT NULL,
+  q_ans3 varchar(30) NOT NULL,
+  q_ans4 varchar(30) NOT NULL,
+  q_correct_ans int(11) NOT NULL,
+  q_allow tinyint(1) NOT NULL,
+  PRIMARY KEY (`q_id`)
+) ENGINE=InnoDB;
+
+CREATE TABLE exams ( exam_id INT AUTO_INCREMENT, exam_title VARCHAR(50) NOT NULL, exam_no_of_qs INT NOT NULL, pos_marks TINYINT NOT NULL, neg_marks TINYINT NOT NULL, exam_allow TINYINT(1) NOT NULL, PRIMARY KEY(exam_id)) ENGINE=InnoDB;
+
+INSERT INTO exams ( exam_title, exam_no_of_qs, pos_marks, neg_marks, exam_allow ) VALUES ( 'Exam Title', 10, 2, 0, 0);
+
+CREATE TABLE answers ( ans_id INT NOT NULL AUTO_INCREMENT, user_id INT, q_id int, answer tinyint(1), primary key(ans_id)) ENGINE=InnoDB;
+
+ALTER TABLE answers ADD CONSTRAINT fk_usr FOREIGN KEY (user_id) references users (user_id);
+
+ALTER TABLE answers ADD CONSTRAINT fk_q FOREIGN KEY (q_id) references questions (q_id);
