@@ -1,0 +1,22 @@
+version: "3.1"
+
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOTPASSWD: "no"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: oes
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./src/extras:/docker-entrypoint-initdb.d
+
+  app:
+    build: ./docker/app
+    ports:
+      - 80:80
+    volumes:
+      - ./src:/var/www/html
+
+volumes:
+  mysql-data:
