@@ -122,5 +122,3 @@ function is_connected()
 }
 
 ?>
-				
-			
