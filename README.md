@@ -5,7 +5,7 @@
 ### With Docker (recommended)
 
 #### Requirements
-* Docker Compose ([get it here](https://docs.docker.com/compose/install/))
+* Docker and Docker Compose ([get it here](https://docs.docker.com/compose/install/))
 
 #### To run
 * Clone the repository to your computer.
